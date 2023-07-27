@@ -56,5 +56,9 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public String getNamedLink() {
+        return "Link to " + this.firstName + "'s page";
+    }
 }
 
