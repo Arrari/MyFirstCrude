@@ -18,6 +18,8 @@ public class User {
     @Column
     private String userName;
 
+    public User() {}
+
     public User(String firstName, String lastName, String email, String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
