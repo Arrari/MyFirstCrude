@@ -42,4 +42,22 @@ public class UsersController {
         userService.saveUser(user);
         return "redirect:/users";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "users/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.updateUser(user);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        userService.deleteUserById(id);
+        return "redirect:/users";
+    }
 }
