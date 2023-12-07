@@ -42,12 +42,13 @@ public class HibernateConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws PropertyVetoException {
-        LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
-        lcemfb.setDataSource(dataSource());
-        lcemfb.setPackagesToScan("web.model");
-        lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
-        lcemfb.setJpaProperties(hibernateProperties());
-        return lcemfb;
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource());
+        em.setPackagesToScan("web.model");
+
+        em.setJpaVendorAdapter(getJpaVendorAdapter());
+        em.setJpaProperties(hibernateProperties());
+        return em;
     }
 
     @Bean
@@ -67,6 +68,8 @@ public class HibernateConfig {
     public PersistenceExceptionTranslationPostProcessor exeptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
+
+
 
 
     private Properties hibernateProperties() {
