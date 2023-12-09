@@ -4,19 +4,23 @@ import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Repository
 public class UserDaoImpl implements UserDao{
 
-    @PersistenceUnit
+    @PersistenceContext
     private EntityManager em;
 
     @Override
     public List<User> getAllUsers() {
-        return em.createNamedQuery("select u from User u", User.class).getResultList();
+        List<User> userList = em.createQuery("from User", User.class).getResultList();
+
+        return userList;
     }
 
     @Override

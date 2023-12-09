@@ -7,14 +7,16 @@
 <body>
 <p th:text="${user.getFirstName()">VALUE</p>
 <p th:text="${user.getLastName()">VALUE</p>
-<p th:text="${user.getemail()">VALUE</p>
+<p th:text="${user.getEmail()">VALUE</p>
 <p th:text="${user.getUserName()">VALUE</p>
 <p th:text="${user.getID()">VALUE</p>
 
-<a th:href="@{/users/{id}/edit(id =${user.getId()})}">Edit details</a>
+<!--<a th:href="@{/users/{id}/edit(id =${user.getId()})}">Edit details</a>
+
 <form th:method="DELETE" th:action="@{/users/{id} (id =${user.getId()})}">
     <input type="submit" value="Delete user">
 </form>
+-->
 
 </body>
 </html>

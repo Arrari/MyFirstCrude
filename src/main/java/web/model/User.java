@@ -1,17 +1,17 @@
 package web.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "my_users")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
     private String firstName;
-    @Column
+
     private String lastName;
     @Column
     private String email;
@@ -29,6 +29,10 @@ public class User {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setFirstName(String firstName) {
@@ -61,6 +65,30 @@ public class User {
 
     public String getNamedLink() {
         return "Link to " + this.firstName + "'s page";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return firstName.equals(user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && userName.equals(user.userName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, userName);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
     }
 }
 

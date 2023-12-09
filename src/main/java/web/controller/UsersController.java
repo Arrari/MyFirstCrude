@@ -17,11 +17,13 @@ public class UsersController {
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
+        userService.saveUser(new User("testfirstname","testlastname","test@mail.com","testUserName"));
     }
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("userList", userService.getAllUsers());
+        System.out.println(userService.getAllUsers());
         return "users/index";
     }
 
