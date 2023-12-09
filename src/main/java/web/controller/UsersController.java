@@ -8,6 +8,8 @@ import web.model.User;
 import web.service.UserService;
 import web.service.UserServiceImpl;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -22,7 +24,8 @@ public class UsersController {
 
     @GetMapping(value = {"/","/index","/list"})
     public String showAll(Model model) {
-        model.addAttribute("userList", userService.getAllUsers());
+        List<User> userList = userService.getAllUsers();
+        model.addAttribute("userList", userList);
         return "users/index";
     }
 

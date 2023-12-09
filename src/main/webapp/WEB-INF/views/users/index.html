@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>All Users</title>
@@ -18,14 +19,16 @@
         <th>ID</th>
         <th>UserName</th>
         <th>LinkToDetail</th>
-        </tj>
+
     </tr>
     </thead>
     <tbody>
-    <tr th:each:="user : ${userList}">
+    <tr th:if="${userList.empty}">
+        <td colspan = "3"> No users in list </td>
+    <tr th:each:="user: ${userList}">
         <td th:text="${user.getId()}">ID</td>
         <td th:text="${user.getUserName()}">UserName</td>
-        <td><a th:href="@{/users/{id}(id=${user.getId()})" th:text="${user.getNamedLink}">user</a></td>
+        <td>PLACEHOLDER FOR LINK</td>
     </tr>
     </tbody>
 </table>
