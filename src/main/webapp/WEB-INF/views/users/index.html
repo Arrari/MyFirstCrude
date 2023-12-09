@@ -8,6 +8,7 @@
 <body>
 
 <h1>Users list</h1>
+
 <br/>
 <br/>
 <table class="table">
@@ -23,15 +24,13 @@
     <tr th:each:="user: ${userList}">
         <td th:text="${user.getId()}">ID</td>
         <td th:text="${user.getUserName()}">UserName</td>
-        <td>Link to details</td>
-        <!--
         <td><a th:href="@{/users/{id}(id=${user.getId()})" th:text="${user.getNamedLink}">user</a></td>
-        -->
     </tr>
     </tbody>
 </table>
 <br/>
 <hr/>
+
 <!--
 <a th:href="/users/newUser">Add new User</a>
 -->
