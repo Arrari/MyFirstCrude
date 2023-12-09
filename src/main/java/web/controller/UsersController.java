@@ -20,10 +20,9 @@ public class UsersController {
         userService.saveUser(new User("testfirstname","testlastname","test@mail.com","testUserName"));
     }
 
-    @GetMapping("/")
+    @GetMapping(value = {"/","/index","/list"})
     public String showAll(Model model) {
         model.addAttribute("userList", userService.getAllUsers());
-        System.out.println(userService.getAllUsers());
         return "users/index";
     }
 
@@ -33,6 +32,7 @@ public class UsersController {
         return "users/show";
     }
 
+    /*
     @GetMapping("/newUser")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
@@ -62,4 +62,5 @@ public class UsersController {
         userService.deleteUserById(id);
         return "redirect:/users";
     }
+    */
 }

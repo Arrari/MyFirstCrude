@@ -13,9 +13,9 @@ public class User {
     private String firstName;
 
     private String lastName;
-    @Column
+
     private String email;
-    @Column
+
     private String userName;
 
     public User() {}
@@ -31,9 +31,7 @@ public class User {
         return firstName;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
