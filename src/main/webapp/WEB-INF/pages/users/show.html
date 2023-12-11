@@ -8,8 +8,15 @@
 </head>
 <body>
 
+
 <div class="card">
     <h5 class="card-header" th:text="${user.getUserName()}">User card</h5>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/users/index">Index</a></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="${user.getId()}">ID</li>
+        </ol>
+    </nav>
     <div class="card-body">
         <h5 class="card-title" th:text="${user.getFirstName()}\'s card">FirstName's card </h5>
         <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
