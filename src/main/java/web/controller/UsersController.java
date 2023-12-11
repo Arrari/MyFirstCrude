@@ -13,9 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-
     private final UserService userService;
-
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
@@ -23,7 +21,6 @@ public class UsersController {
         userService.saveUser(new User("testfirstname1","testlastname2","test@mail.com","testUserName2"));
         userService.saveUser(new User("testfirstname2","testlastname3","test1@mail.com","testUserName3"));
         userService.saveUser(new User("testfirstname3","testlastname4","te3st@mail.com","testUserName4"));
-
     }
 
     @GetMapping()
@@ -33,34 +30,14 @@ public class UsersController {
         return "users/index";
     }
 
-    @GetMapping("/?id}")
+    @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("user",userService.getUserById(id));
         return "users/show";
     }
-
-
-    @GetMapping("/newUser")
-    public String newUser(Model model) {
-        model.addAttribute("user", new User());
-        return "users/newUser";
-    }
-    @PostMapping()
-    public String create(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
-        return "redirect:/users";
-    }
-    /*
-
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "users/edit";
-    }
-
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.updateUser(user);
+        userService.updateUser(user, id);
         return "redirect:/users";
     }
 
@@ -69,5 +46,17 @@ public class UsersController {
         userService.deleteUserById(id);
         return "redirect:/users";
     }
-    */
+
+    @GetMapping("/newUser")
+    public String newUser(Model model) {
+        model.addAttribute("user", new User());
+        return "users/newUser";
+    }
+
+    @PostMapping()
+    public String create(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/users";
+    }
+
 }

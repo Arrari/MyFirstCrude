@@ -33,8 +33,12 @@ public class UserDaoImpl implements UserDao{
         em.persist(user);
     }
     @Override
-    public void updateUser(User user) {
-        em.merge(user);
+    public void updateUser(User updatedUser, int id) {
+        User userToUpdate = getUserById(id);
+        userToUpdate.setFirstName(updatedUser.getFirstName());
+        userToUpdate.setLastName(updatedUser.getLastName());
+        userToUpdate.setEmail(updatedUser.getEmail());
+        userToUpdate.setUserName(updatedUser.getUserName());
     }
 
     @Override
