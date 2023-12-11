@@ -19,17 +19,21 @@ public class UsersController {
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
-        userService.saveUser(new User("testfirstname","testlastname","test@mail.com","testUserName"));
+        userService.saveUser(new User("testfirstname","testlastname1","tes2t@mail.com","testUserName1"));
+        userService.saveUser(new User("testfirstname1","testlastname2","test@mail.com","testUserName2"));
+        userService.saveUser(new User("testfirstname2","testlastname3","test1@mail.com","testUserName3"));
+        userService.saveUser(new User("testfirstname3","testlastname4","te3st@mail.com","testUserName4"));
+
     }
 
-    @GetMapping(value = {"/","/index","/list"})
+    @GetMapping()
     public String showAll(Model model) {
         List<User> userList = userService.getAllUsers();
-        model.addAttribute("userList", userList);
+        model.addAttribute("users", userList);
         return "users/index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/?={id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("user",userService.getUserById(id));
         return "users/show";
