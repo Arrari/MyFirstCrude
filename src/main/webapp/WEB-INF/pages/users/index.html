@@ -3,32 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>All Users</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Index</li>
+    </ol>
+</nav>
 
-<h1>Users list</h1>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h1>Users list</h1></div>
+    <div class="panel-body">
+        <div class="container-flud">
+            <table class="table table-bordered table-sm">
+                <caption>List of users</caption>
+                <thead>
+                <tr class="table-primary">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>LinkToDetail</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.getId()}">ID</td>
+                    <td th:text="${user.getEmail()}">FN</td>
+                    <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getNamedLink}">user</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<br/>
-<br/>
-
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th>ID</th>
-        <th>eMail</th>
-        <th>LinkToDetail</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.getId()}">ID</td>
-        <td th:text="${user.getEmail()}">FN</td>
-        <td> <a th:href="@{/users/(id=${user.getId()})}" th:text="${user.getNamedLink}">user</a></td>
-    </tr>
-    </tbody>
-</table>
 
 <br/>
 <hr/>

@@ -33,24 +33,24 @@ public class UsersController {
         return "users/index";
     }
 
-    @GetMapping("/?={id}")
+    @GetMapping("/?id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("user",userService.getUserById(id));
         return "users/show";
     }
 
-    /*
+
     @GetMapping("/newUser")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         return "users/newUser";
     }
-
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/users";
     }
+    /*
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
