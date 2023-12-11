@@ -26,13 +26,13 @@
 
     <div class="panel-body">
         <form class="form-inline" th:method="POST" th:action="@{/users}" th:object="${user}">
-            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <label class="sr-only" for="inlineFormInputName2">First name: </label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" th:field="*{firstName}"
                    placeholder="First Name">
-            <label class="sr-only" for="inlineFormInputName3">Name</label>
+            <label class="sr-only" for="inlineFormInputName3">Last name:</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName3" th:field="*{lastName}"
                    placeholder="Last Name">
-            <label class="sr-only" for="inlineFormInputName4">Name</label>
+            <label class="sr-only" for="inlineFormInputName4">email: </label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName4" th:field="*{email}"
                    placeholder="Email@domain.com">
 
