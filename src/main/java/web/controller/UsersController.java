@@ -23,7 +23,7 @@ public class UsersController {
         userService.saveUser(new User("testfirstname3","testlastname4","te3st@mail.com","testUserName4"));
     }
 
-    @GetMapping()
+    @GetMapping(value = {"","/index","/home"})
     public String showAll(Model model) {
         List<User> userList = userService.getAllUsers();
         model.addAttribute("users", userList);

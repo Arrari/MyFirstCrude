@@ -10,7 +10,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/users/index">Index</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/users/index}">Index</a></li>
         <li class="breadcrumb-item active" aria-current="page">New User</li>
     </ol>
 </nav>
@@ -47,23 +47,5 @@
         </form>
     </div>
 </div>
-<!--
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
-    <br/>
-    <label for="firstName">First Name: </label>
-    <input type="text" th:field="*{firstName}" id="firstName">
-    <br/>
-    <label for="lastName">Last Name: </label>
-    <input type="text" th:field="*{lastName}" id="lastName">
-    <br/>
-    <label for="email">email: </label>
-    <input type="text" th:field="*{email}" id="email">
-    <br/>
-    <label for="userName">UserName (nickname): </label>
-    <input type="text" th:field="*{userName}" id="userName">
-    <br/>
-    <input type="submit" value="Add new User!">
-</form>
--->
 </body>
 </html>

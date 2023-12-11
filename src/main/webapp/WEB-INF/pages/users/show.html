@@ -19,7 +19,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/users/index">Index</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/users/index}">Index</a></li>
                 <li class="breadcrumb-item active" aria-current="page" th:text="${user.getId()}">ID</li>
             </ol>
         </nav>
