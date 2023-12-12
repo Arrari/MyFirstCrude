@@ -17,10 +17,10 @@ public class UsersController {
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
-        userService.saveUser(new User("testfirstname","testlastname1","tes2t@mail.com","testUserName1"));
-        userService.saveUser(new User("testfirstname1","testlastname2","test@mail.com","testUserName2"));
-        userService.saveUser(new User("testfirstname2","testlastname3","test1@mail.com","testUserName3"));
-        userService.saveUser(new User("testfirstname3","testlastname4","te3st@mail.com","testUserName4"));
+        userService.updateUser(new User("testfirstname","testlastname1","tes2t@mail.com","testUserName1"));
+        userService.updateUser(new User("testfirstname1","testlastname2","test@mail.com","testUserName2"));
+        userService.updateUser(new User("testfirstname2","testlastname3","test1@mail.com","testUserName3"));
+        userService.updateUser(new User("testfirstname3","testlastname4","te3st@mail.com","testUserName4"));
     }
 
     @GetMapping(value = {"","/index","/home"})
@@ -35,13 +35,13 @@ public class UsersController {
         model.addAttribute("user",userService.getUserById(id));
         return "users/show";
     }
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.updateUser(user, id);
+    @PatchMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
         return "redirect:/users";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public String delete(@PathVariable("id") int id) {
         userService.deleteUserById(id);
         return "redirect:/users";
@@ -55,8 +55,7 @@ public class UsersController {
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+        userService.updateUser(user);
         return "redirect:/users";
     }
-
 }

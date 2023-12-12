@@ -21,30 +21,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return ud.getAllUsers();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserById(int id) {
         return ud.getUserById(id);
     }
 
     @Override
-    @Transactional
-    public void saveUser(User user) {
-        ud.saveUser(user);
-
+    public void persistUser(User user) {
+        ud.persistUser(user);
     }
 
     @Override
-    @Transactional
-    public void updateUser(User user, int id) {
-        ud.updateUser(user, id);
+    public void updateUser(User user) {
+        ud.updateUser(user);
     }
 
     @Override
-    @Transactional
     public void deleteUserById(int id) {
         ud.deleteUserById(id);
     }

@@ -26,11 +26,15 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(value = "web")
 public class HibernateConfig {
-    @Autowired
+
     private Environment env;
+    @Autowired
+    public void setEnv(Environment env) {
+        this.env = env;
+    }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
         dataSource.setUrl(env.getProperty("db.url"));
@@ -40,12 +44,12 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws PropertyVetoException {
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() throws PropertyVetoException {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(getJpaVendorAdapter());
-        em.setDataSource(dataSource());
+        em.setDataSource(getDataSource());
         em.setPackagesToScan("web.model");
-        em.setJpaProperties(hibernateProperties());
+        em.setJpaProperties(getHibernateProperties());
         return em;
     }
 
@@ -56,22 +60,20 @@ public class HibernateConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() throws PropertyVetoException {
+    public PlatformTransactionManager getTransactionManager() throws PropertyVetoException {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        transactionManager.setEntityManagerFactory(getEntityManagerFactory().getObject());
 
         return transactionManager;
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exeptionTranslation() {
+    public PersistenceExceptionTranslationPostProcessor getExeptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
 
-
-
-    private Properties hibernateProperties() {
+    private Properties getHibernateProperties() {
         Properties properties = new Properties();
         //properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
