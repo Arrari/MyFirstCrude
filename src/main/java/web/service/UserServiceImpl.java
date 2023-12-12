@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        ud.updateUser(user);
+    public void updateUser(User user, int id) {
+        ud.updateUser(user, id);
     }
 
     @Override

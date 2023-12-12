@@ -66,16 +66,16 @@ public class User {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email, userName);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return firstName.equals(user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && userName.equals(user.userName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, email, userName);
+        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(userName, user.userName);
     }
 
     @Override

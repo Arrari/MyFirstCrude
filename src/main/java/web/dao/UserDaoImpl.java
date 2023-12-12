@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
     private EntityManager em;
 
@@ -24,7 +24,6 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> getAllUsers() {
         List<User> userList = em.createQuery("from User", User.class).getResultList();
-
         return userList;
     }
 
@@ -37,16 +36,21 @@ public class UserDaoImpl implements UserDao{
     public void persistUser(User user) {
         em.persist(user);
     }
+
     @Override
-    public void updateUser(User userToUpdate) {
-      em.merge(userToUpdate);
+    public void updateUser(User updatedUser, int id) {
+        User userToUpdate = getUserById(id);
+        userToUpdate.setFirstName(updatedUser.getFirstName());
+        userToUpdate.setLastName(updatedUser.getLastName());
+        userToUpdate.setEmail(updatedUser.getEmail());
+        userToUpdate.setUserName(updatedUser.getUserName());
     }
 
     @Override
     public void deleteUserById(int id) {
-       User userForDeletion = em.find(User.class, id);
-       if (userForDeletion != null) {
-           em.remove(userForDeletion);
-       }
+        User userForDeletion = em.find(User.class, id);
+        if (userForDeletion != null) {
+            em.remove(userForDeletion);
+        }
     }
 }
